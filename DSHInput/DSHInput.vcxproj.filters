@@ -16,6 +16,15 @@
     <Filter Include="Interfaces">
       <UniqueIdentifier>{f38c983e-9a47-43c5-928a-20da2811144c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfaces\ISystem">
+      <UniqueIdentifier>{62b67806-5f9a-40da-a41b-882fecb29713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation">
+      <UniqueIdentifier>{b134fa69-7b37-466f-8e48-5a09318a45de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation\System">
+      <UniqueIdentifier>{4810d949-aaf8-4df6-b3fa-d13fe4c20e5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -30,8 +39,11 @@
     <ClInclude Include="Exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces.h">
-      <Filter>Interfaces</Filter>
+    <ClInclude Include="ISystem.h">
+      <Filter>Interfaces\ISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Implementation\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +52,12 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ISystem.cpp">
+      <Filter>Interfaces\ISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Implementation\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

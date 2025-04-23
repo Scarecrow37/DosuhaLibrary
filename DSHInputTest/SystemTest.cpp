@@ -10,7 +10,7 @@ namespace DSH::Input
 	{
 	public:
 
-		TEST_METHOD(SystemCreationSuccess)
+		TEST_METHOD(CreationSuccess)
 		{
 			CreateSystem createSystem;
 			ISystem* pSystem = nullptr;
@@ -20,7 +20,7 @@ namespace DSH::Input
 			pSystem->Release();
 		}
 
-		TEST_METHOD(SystemCreationFailure)
+		TEST_METHOD(CreationFailure)
 		{
 			CreateSystem createSystem;
 			ISystem* pSystem = nullptr;

@@ -16,6 +16,9 @@
     <Filter Include="Interfaces">
       <UniqueIdentifier>{f38c983e-9a47-43c5-928a-20da2811144c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfaces\ISystem">
+      <UniqueIdentifier>{62b67806-5f9a-40da-a41b-882fecb29713}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="Interfaces.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="ISystem.h">
+      <Filter>Interfaces\ISystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -40,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ISystem.cpp">
+      <Filter>Interfaces\ISystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

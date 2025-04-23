@@ -8,7 +8,7 @@ namespace DSHInputTest
 	TEST_CLASS(DSHInputTest)
 	{
 	public:
-		
+
 		TEST_METHOD(TestMethod1)
 		{
 		}

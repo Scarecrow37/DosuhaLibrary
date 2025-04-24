@@ -25,6 +25,12 @@
     <Filter Include="Implementation\System">
       <UniqueIdentifier>{4810d949-aaf8-4df6-b3fa-d13fe4c20e5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfaces\IDevices">
+      <UniqueIdentifier>{a924c30d-8bdd-4965-bb7b-0df3ccffc800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces\IDevices\IDevice">
+      <UniqueIdentifier>{e96d07b9-c56b-4268-90c6-3bb7aa94fa1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -45,6 +51,9 @@
     <ClInclude Include="System.h">
       <Filter>Implementation\System</Filter>
     </ClInclude>
+    <ClInclude Include="IDevice.h">
+      <Filter>Interfaces\IDevices\IDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -58,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Implementation\System</Filter>
+    </ClCompile>
+    <ClCompile Include="IDevice.cpp">
+      <Filter>Interfaces\IDevices\IDevice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

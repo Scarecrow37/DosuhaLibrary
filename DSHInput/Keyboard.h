@@ -15,7 +15,7 @@ namespace DSH::Input
 		public:
 			Keyboard();
 			~Keyboard() override;
-
+			
 			HRESULT QueryInterface(const IID& riid, void** ppvObject) override;
 			ULONG AddRef() override;
 			ULONG Release() override;

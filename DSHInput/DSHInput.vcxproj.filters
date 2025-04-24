@@ -31,6 +31,9 @@
     <Filter Include="Interfaces\IDevices\IDevice">
       <UniqueIdentifier>{e96d07b9-c56b-4268-90c6-3bb7aa94fa1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfaces\IDevices\IKeyboard">
+      <UniqueIdentifier>{4f32208f-057c-4861-b753-fdb7a1add5e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="IDevice.h">
       <Filter>Interfaces\IDevices\IDevice</Filter>
     </ClInclude>
+    <ClInclude Include="IKeyboard.h">
+      <Filter>Interfaces\IDevices\IKeyboard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -70,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="IDevice.cpp">
       <Filter>Interfaces\IDevices\IDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="IKeyboard.cpp">
+      <Filter>Interfaces\IDevices\IKeyboard</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

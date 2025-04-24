@@ -144,6 +144,7 @@
     <ClInclude Include="Exports.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IDevice.h" />
+    <ClInclude Include="IKeyboard.h" />
     <ClInclude Include="ISystem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Requires.h" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="IDevice.cpp" />
+    <ClCompile Include="IKeyboard.cpp" />
     <ClCompile Include="ISystem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

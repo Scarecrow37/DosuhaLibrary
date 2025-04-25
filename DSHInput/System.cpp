@@ -137,14 +137,16 @@ HRESULT DSH::Input::System::RegisterRawInputDevices(const RawInputUsageType usUs
 		{
 			.usUsagePage= 0x01,
 			.usUsage = usUsage,
-			.dwFlags= RIDEV_DEVNOTIFY,
+			.dwFlags= RIDEV_INPUTSINK | RIDEV_DEVNOTIFY,
 			.hwndTarget= NULL
 		});
+
 	if (const bool result = ::RegisterRawInputDevices(_rawInputDevices.data(),
 	                                                  static_cast<UINT>(_rawInputDevices.size()),
 	                                                  sizeof(RAWINPUTDEVICE));
 		result == false)
 	{
+		_rawInputDevices.pop_back();
 		const DWORD error = ::GetLastError();
 		return HRESULT_FROM_WIN32(error);
 	}

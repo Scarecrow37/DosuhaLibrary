@@ -93,6 +93,12 @@ namespace DSH::Input
 		ISystem& operator=(ISystem&& other) noexcept = default;
 		virtual ~ISystem() = default;
 
+		/**
+		 * @brief Dispatches the raw input data to the appropriate device.
+		 * @param isFocused Indicates whether the window is focused.
+		 * @param rawInput Pointer to the raw input data.
+		 * @return S_OK: if the message is dispatched successfully.
+		 */
 		virtual LRESULT CALLBACK Dispatch(bool isFocused, RAWINPUT* rawInput) = 0;
 
 		/**

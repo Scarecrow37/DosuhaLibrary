@@ -21,6 +21,39 @@ namespace DSH::Input
 			/* [annotation][out] */
 			_Out_ ISystem** ppSystem) const;
 	};
+
+	EXTERN_C struct DSH_INPUT_API WindowProcedure
+	{
+		explicit WindowProcedure(ISystem* system);
+		WindowProcedure(const WindowProcedure& other);
+		WindowProcedure(WindowProcedure&& other) noexcept;
+		WindowProcedure& operator=(const WindowProcedure& other);
+		WindowProcedure& operator=(WindowProcedure&& other) noexcept;
+		~WindowProcedure();
+
+		/**
+		 * @brief Calls the system's dispatch function.
+		 * @param windowHandle The handle to the window.
+		 * @param message The message to be dispatched.
+		 * @param wParam The wParam of the message.
+		 * @param lParam The lParam of the message.
+		 * @return S_OK: if the message is dispatched successfully.
+		 * @return E_NOTIMPL: if the system is null.
+		 * @return E_OUTOFMEMORY: if memory allocation fails.
+		 * @return E_FAIL: GetRawInputData failed.
+		 */
+		LRESULT CALLBACK operator()(
+			/* [annotation][in] */
+			_In_ HWND windowHandle,
+			/* [annotation][in] */
+			_In_ UINT message,
+			/* [annotation][in] */
+			_In_ WPARAM wParam,
+			/* [annotation][in] */
+			_In_ LPARAM lParam) const;
+
+		ISystem* System;
+	};
 }
 
 namespace DSH::Input
@@ -60,16 +93,18 @@ namespace DSH::Input
 		ISystem& operator=(ISystem&& other) noexcept = default;
 		virtual ~ISystem() = default;
 
+		virtual LRESULT CALLBACK Dispatch(bool isFocused, RAWINPUT* rawInput) = 0;
+
 		/**
-		 * @brief Creates an instance of the keyboard.
+		 * @brief Gets the keyboard instance.
 		 * @param ppKeyboard Pointer to a pointer to the keyboard instance.
 		 * @return E_INVALIDARG: if ppKeyboard is null.
 		 * @return E_OUTOFMEMORY: if memory allocation fails.
 		 * @return S_OK: if the keyboard instance is created successfully.
 		 */
-		virtual HRESULT STDMETHODCALLTYPE CreateKeyboard(
+		virtual HRESULT STDMETHODCALLTYPE GetKeyboard(
 			/* [annotation][out] */
-			_Out_ Device::IKeyboard** ppKeyboard) const = 0;
+			_Out_ Device::IKeyboard** ppKeyboard) = 0;
 
 		/**
 		 * @brief Creates an instance of the mouse.

@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "System.h"
 
+#include "Keyboard.h"
 //#include "Controller.h"
-//#include "Keyboard.h"
 //#include "Mouse.h"
 //#include "MappingContext.h"
 //#include "Negative.h"
@@ -35,13 +35,48 @@ ULONG DSH::Input::System::Release()
 	return newRefCount;
 }
 
-HRESULT DSH::Input::System::CreateKeyboard(Device::IKeyboard** ppKeyboard) const
+LRESULT DSH::Input::System::Dispatch(const bool isFocused, RAWINPUT* rawInput)
 {
-	// TODO: Implement the function to create an instance of the keyboard.
-	//if (ppKeyboard == nullptr) return E_INVALIDARG;
-	//Device::Keyboard* pKeyboard = new Device::Keyboard();
-	//if (pKeyboard == nullptr) return E_OUTOFMEMORY;
-	//*ppKeyboard = pKeyboard;
+	LRESULT result = S_OK;
+	switch (rawInput->header.dwType)
+	{
+	case RIM_TYPEMOUSE:
+		{
+		// TODO: Implement the function to handle mouse input.
+		break;
+		}
+	case RIM_TYPEKEYBOARD:
+		{
+		const HANDLE deviceHandle = rawInput->header.hDevice;
+		if (_keyboards.contains(deviceHandle) == false)
+		{
+			Device::IKeyboard* pKeyboard = _unhandledKeyboards.top();
+			_keyboards[deviceHandle] = pKeyboard;
+		}
+		result = _keyboards[deviceHandle]->Dispatch(isFocused, rawInput->data.keyboard);
+		break;
+		}
+	default:
+		{
+		result = S_OK;
+		break;
+		}
+	}
+	return result;
+}
+
+HRESULT DSH::Input::System::GetKeyboard(Device::IKeyboard** ppKeyboard)
+{
+	if (const HRESULT registerResult = RegisterRawInputDevices(RAW_INPUT_USAGE_KEYBOARD);
+		FAILED(registerResult)) return registerResult;
+
+	if (ppKeyboard == nullptr) return E_INVALIDARG;
+	Device::Keyboard* pKeyboard = new (std::nothrow) Device::Keyboard();
+	if (pKeyboard == nullptr) return E_OUTOFMEMORY;
+	_unhandledKeyboards.push(pKeyboard);
+	pKeyboard->AddRef();
+
+	*ppKeyboard = pKeyboard;
 	return S_OK;
 }
 
@@ -92,5 +127,26 @@ HRESULT DSH::Input::System::CreateModifier(Modifier::ISwizzleAxis** ppModifier) 
 	//Modifier::SwizzleAxis* pModifier = new Modifier::SwizzleAxis();
 	//if (pModifier == nullptr) return E_OUTOFMEMORY;
 	//*ppModifier = pModifier;
+	return S_OK;
+}
+
+HRESULT DSH::Input::System::RegisterRawInputDevices(const RawInputUsageType usUsage)
+{
+	_rawInputDevices.push_back(
+		RAWINPUTDEVICE
+		{
+			.usUsagePage= 0x01,
+			.usUsage = usUsage,
+			.dwFlags= RIDEV_DEVNOTIFY,
+			.hwndTarget= NULL
+		});
+	if (const bool result = ::RegisterRawInputDevices(_rawInputDevices.data(),
+	                                                  static_cast<UINT>(_rawInputDevices.size()),
+	                                                  sizeof(RAWINPUTDEVICE));
+		result == false)
+	{
+		const DWORD error = ::GetLastError();
+		return HRESULT_FROM_WIN32(error);
+	}
 	return S_OK;
 }

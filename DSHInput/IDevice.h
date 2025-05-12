@@ -13,9 +13,5 @@ namespace DSH::Input::Device
 		IDevice& operator=(const IDevice& other) = default;
 		IDevice& operator=(IDevice&& other) noexcept = default;
 		virtual ~IDevice() = default;
-
-		virtual void STDMETHODCALLTYPE Update() = 0;
-
-		virtual void STDMETHODCALLTYPE Reset() = 0;
 	};
 }

@@ -50,6 +50,11 @@ LRESULT DSH::Input::System::Dispatch(const bool isFocused, RAWINPUT* rawInput)
 		const HANDLE deviceHandle = rawInput->header.hDevice;
 		if (_keyboards.contains(deviceHandle) == false)
 		{
+			if (_unhandledKeyboards.empty())
+			{
+				result = E_FAIL;
+				break;
+			}
 			Device::IKeyboard* pKeyboard = _unhandledKeyboards.top();
 			_keyboards[deviceHandle] = pKeyboard;
 		}

@@ -97,6 +97,7 @@ namespace DSH::Input
 		 * @brief Dispatches the raw input data to the appropriate device.
 		 * @param isFocused Indicates whether the window is focused.
 		 * @param rawInput Pointer to the raw input data.
+		 * @return E_FAIL: if the message is not dispatched successfully.
 		 * @return S_OK: if the message is dispatched successfully.
 		 */
 		virtual LRESULT CALLBACK Dispatch(bool isFocused, RAWINPUT* rawInput) = 0;

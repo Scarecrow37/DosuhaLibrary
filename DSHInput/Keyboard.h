@@ -20,8 +20,7 @@ namespace DSH::Input
 			ULONG AddRef() override;
 			ULONG Release() override;
 
-			void Update() override;
-			void Reset() override;
+			LRESULT Dispatch(bool isFocused, const RAWKEYBOARD& rawKeyboard) override;
 
 			HRESULT GetComponent(Key key, Component::IButtonComponent** ppComponent) override;
 

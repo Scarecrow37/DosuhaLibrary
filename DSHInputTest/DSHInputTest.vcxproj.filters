@@ -21,7 +21,10 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SystemTest.cpp">
+    <ClCompile Include="Creation.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispath.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>

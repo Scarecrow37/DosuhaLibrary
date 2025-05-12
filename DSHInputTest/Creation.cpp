@@ -4,29 +4,27 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace DSH::Input
+namespace DSH::Input::System
 {
-	TEST_CLASS(System)
+	TEST_CLASS(Creation)
 	{
 	public:
 
-		TEST_METHOD(CreationSuccess)
+		TEST_METHOD(Success)
 		{
-			CreateSystem createSystem;
+			constexpr CreateSystem createSystem;
 			ISystem* pSystem = nullptr;
-			HRESULT hr = createSystem(&pSystem);
+			const HRESULT hr = createSystem(&pSystem);
 			Assert::IsTrue(SUCCEEDED(hr));
 			Assert::IsNotNull(pSystem);
 			pSystem->Release();
 		}
 
-		TEST_METHOD(CreationFailure)
+		TEST_METHOD(Failure)
 		{
-			CreateSystem createSystem;
-			ISystem* pSystem = nullptr;
-			HRESULT hr = createSystem(nullptr);
+			constexpr CreateSystem createSystem;
+			const HRESULT hr = createSystem(nullptr);
 			Assert::IsTrue(FAILED(hr));
-			Assert::IsNull(pSystem);
 		}
 	};
 }
